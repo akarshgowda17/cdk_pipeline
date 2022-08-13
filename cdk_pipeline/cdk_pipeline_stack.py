@@ -6,6 +6,7 @@ from aws_cdk import (
 )
 from aws_cdk.pipelines import CodePipeline, CodePipelineSource, ShellStep
 from constructs import Construct
+from cdk_pipeline.my_pipeline_app_stage import MyPipelineAppStage
 
 class CdkPipelineStack(Stack):
 
@@ -20,3 +21,6 @@ class CdkPipelineStack(Stack):
                                 "cdk synth"]
                         )
                     )
+
+        pipeline.add_stage(MyPipelineAppStage(self, "test",
+            env=cdk.Environment(account="626228733568", region="ap-south-1")))#want to check whether its necessary to add env for each stage
